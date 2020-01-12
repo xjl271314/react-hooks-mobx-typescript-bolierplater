@@ -1,0 +1,105 @@
+// $radius Number radius半径  $direction Array 方向数组
+@mixin borderRadius($radius:8px, $direction:'') {
+    @if $direction=='' {
+        border-radius: $radius;
+    }
+    @else {
+        @if $direction=='top' {
+            border-top-left-radius: $radius;
+            border-top-right-radius: $radius;
+        }
+        @if $direction=='bottom' {
+            border-bottom-left-radius: $radius;
+            border-bottom-right-radius: $radius;
+        }
+        @if $direction=='left' {
+            border-top-left-radius: $radius;
+            border-bottom-left-radius: $radius;
+        }
+        @if $direction=='right' {
+            border-top-right-radius: $radius;
+            border-bottom-right-radius: $radius;
+        }
+    }
+}
+
+//图片宽高比例自适应或者固定比例
+// 宽高比16:9 （100%*9）/16
+@mixin imgFixPercent($percent:100%) {
+    position: relative;
+    overflow: hidden;
+    padding-bottom: $percent;
+    >img {
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+}
+
+//当元素数量为指定数量时 选择所有的元素
+// $bortherClassName的原因是因为层级嵌套的情况下会失效
+@mixin nItems($n, $bortherClassName) {
+    &:first-child:nth-last-child(#{$n}),
+    &:first-child:nth-last-child(#{$n})~#{$bortherClassName} {
+        @content;
+    }
+}
+
+// css选择器 选择列表中第n个到第m个之间的元素
+@mixin checkedInCros($start, $end) {
+    :nth-child(-n+#{$end}):nth-child(n+#{$start}) {
+        @content;
+    }
+}
+
+//根据每行排列几个 将数字转化为宽度
+@mixin column($num:2) {
+    width: 100% / $num;
+}
+
+@mixin textEllipsis($line:2) {
+    display: -webkit-box !important;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    /* autoprefixer: off */
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: $line;
+}
+
+//假如每行n列 最后一列元素的特殊样式
+@mixin columnLastRowStyle($column:2) {
+    @if $column==2 {
+        &:last-child,
+        &:nth-last-child(2):nth-of-type(2n+1) {
+            @content;
+        }
+    }
+    @if $column==3 {
+        &:last-child,
+        &:nth-last-child(2):nth-of-type(3n+2),
+        &:nth-last-child(3):nth-of-type(3n+1),
+            {
+            @content;
+        }
+    }
+}
+
+/* 行高 */
+@mixin lineHeight($height:50px, $line-height:50px) {
+    @if ($height !=null) {
+        height: $height;
+    }
+    @if ($line-height !=null) {
+        line-height: $line-height;
+    }
+}
+
+@mixin displayFlex($direction:'row',$justify:'flex-start',$align:'center'){
+    @if $direction == 'row'{
+        flex-direction: row;
+    }
+    @else{
+        flex-direction: column;
+    }
+}
