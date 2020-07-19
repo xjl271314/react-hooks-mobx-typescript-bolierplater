@@ -23,7 +23,7 @@
     "bootstrap": "4.4.1",
     "classnames": "^2.2.6",
     "cls": "^0.1.5",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "mobx": "^5.15.1",
     "mobx-react": "^6.1.4",
     "mobx-react-router": "^4.1.0",
