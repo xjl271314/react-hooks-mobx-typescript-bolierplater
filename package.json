@@ -19,7 +19,7 @@
     "@types/react": "^16.9.17",
     "@types/react-dom": "^16.9.4",
     "@types/reactstrap": "^8.2.0",
-    "axios": "^0.19.1",
+    "axios": "^0.21.1",
     "bootstrap": "4.4.1",
     "classnames": "^2.2.6",
     "cls": "^0.1.5",
